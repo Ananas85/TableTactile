@@ -1,0 +1,16 @@
+\\psf\Home\Documents\FIL\IPIPIP\ProjetTabletTactile\ProjetTabletTactile\bin\Debug\Resources\icon.png
+\\psf\Home\Documents\FIL\IPIPIP\ProjetTabletTactile\ProjetTabletTactile\bin\Debug\ProjetTabletTactile.xml
+\\psf\Home\Documents\FIL\IPIPIP\ProjetTabletTactile\ProjetTabletTactile\bin\Debug\ProjetTabletTactile.exe
+\\psf\Home\Documents\FIL\IPIPIP\ProjetTabletTactile\ProjetTabletTactile\bin\Debug\ProjetTabletTactile.pdb
+\\psf\Home\Documents\FIL\IPIPIP\ProjetTabletTactile\ProjetTabletTactile\obj\Debug\ProjetTabletTactile.csprojResolveAssemblyReference.cache
+\\psf\Home\Documents\FIL\IPIPIP\ProjetTabletTactile\ProjetTabletTactile\obj\Debug\SurfaceWindow1.baml
+\\psf\Home\Documents\FIL\IPIPIP\ProjetTabletTactile\ProjetTabletTactile\obj\Debug\App.baml
+\\psf\Home\Documents\FIL\IPIPIP\ProjetTabletTactile\ProjetTabletTactile\obj\Debug\SurfaceWindow1.g.cs
+\\psf\Home\Documents\FIL\IPIPIP\ProjetTabletTactile\ProjetTabletTactile\obj\Debug\App.g.cs
+\\psf\Home\Documents\FIL\IPIPIP\ProjetTabletTactile\ProjetTabletTactile\obj\Debug\ProjetTabletTactile_Content.g.cs
+\\psf\Home\Documents\FIL\IPIPIP\ProjetTabletTactile\ProjetTabletTactile\obj\Debug\ProjetTabletTactile_MarkupCompile.cache
+\\psf\Home\Documents\FIL\IPIPIP\ProjetTabletTactile\ProjetTabletTactile\obj\Debug\ProjetTabletTactile.g.resources
+\\psf\Home\Documents\FIL\IPIPIP\ProjetTabletTactile\ProjetTabletTactile\obj\Debug\ProjetTabletTactile.Properties.Resources.resources
+\\psf\Home\Documents\FIL\IPIPIP\ProjetTabletTactile\ProjetTabletTactile\obj\Debug\ProjetTabletTactile.csproj.GenerateResource.Cache
+\\psf\Home\Documents\FIL\IPIPIP\ProjetTabletTactile\ProjetTabletTactile\obj\Debug\ProjetTabletTactile.exe
+\\psf\Home\Documents\FIL\IPIPIP\ProjetTabletTactile\ProjetTabletTactile\obj\Debug\ProjetTabletTactile.pdb
