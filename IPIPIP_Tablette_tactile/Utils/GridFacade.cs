@@ -28,23 +28,25 @@ namespace IPIPIP_Tablette_tactile
         /// <summary>
         /// Convert a cell axis to a pixel axis
         /// </summary>
-        /// <param name="view"></param>
+        /// <param name="cellWidth"></param>
+        /// <param name="axis"></param>
         /// <param name="x"></param>
         /// <returns></returns>
-        public int convertIndexXtoPixel(CGridView view, int x)
+        public int convertIndexXtoPixel(int cellWidth, int axis, int x)
         {
-            return view.cellWidth * x + view.axis;
+            return cellWidth * x + axis;
         }
 
         /// <summary>
         /// Convert a cell ordinate to a pixel ordinate
         /// </summary>
-        /// <param name="view"></param>
-        /// <param name="x"></param>
+        /// <param name="cellHeight"></param>
+        /// <param name="ordinate"></param>
+        /// <param name="y"></param>
         /// <returns></returns>
-        public int convertIndexYtoPixel(CGridView view, int y)
+        public int convertIndexYtoPixel(int cellHeight, int ordinate, int y)
         {
-            return view.cellHeight * y + view.ordinate;
+            return cellHeight * y + ordinate;
         }
 
         /// <summary>

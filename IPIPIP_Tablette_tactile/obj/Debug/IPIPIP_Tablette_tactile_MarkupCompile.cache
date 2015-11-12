@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-\\psf\Home\Documents\FIL\IPIPIP\IPIPIP_Tablette_tactile\IPIPIP_Tablette_tactile\obj\Debug\
+\\psf\Home\Documents\FIL\IPIPIP\TableTactile\IPIPIP_Tablette_tactile\obj\Debug\
 IPIPIP_Tablette_tactile
 none
 false
 DEBUG;TRACE
-\\psf\Home\Documents\FIL\IPIPIP\IPIPIP_Tablette_tactile\IPIPIP_Tablette_tactile\App.xaml
-2-888740071
+\\psf\Home\Documents\FIL\IPIPIP\TableTactile\IPIPIP_Tablette_tactile\App.xaml
+3420748278
 2-1779617742
-14-1339509744
+16-1651333316
 152103913890
-GameView.xaml;View\CGridView.xaml;
+GameView.xaml;View\CellView.xaml;View\CGridView.xaml;
 
 False
 

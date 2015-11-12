@@ -3,8 +3,9 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:s="http://schemas.microsoft.com/surface/2008"
     Title="IPIPIP_Tablette_tactile"
+    TouchDown="OnTouchDown"
     >
-   <Canvas Name="myCanvas" TouchDown="OnTouchDown">
+   <Canvas Name="myCanvas">
        
     </Canvas>
 </s:SurfaceWindow>

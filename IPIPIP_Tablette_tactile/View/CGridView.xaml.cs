@@ -1,4 +1,6 @@
-﻿using System.Windows.Media;
+﻿using System.Collections.Generic;
+using System.Windows.Controls;
+using System.Windows.Media;
 using System.Windows.Shapes;
 using IPIPIP_Tablette_tactile.Model;
 
@@ -31,6 +33,16 @@ namespace IPIPIP_Tablette_tactile.View
         public int ordinate { get; set; }
 
         /// <summary>
+        /// The thickeness of a cell
+        /// </summary>
+        public int cellBorderThickness { get; set; }
+
+        /// <summary>
+        /// Our list of cells
+        /// </summary>
+        protected List<CellView> cellViews;
+
+        /// <summary>
         /// The model of the grid
         /// </summary>
         private GridModel gridModel;
@@ -41,50 +53,43 @@ namespace IPIPIP_Tablette_tactile.View
         /// </summary>
         public CGridView()
         {
-            InitializeComponent();
-            cellWidth = 30;
-            cellHeight = 30;
-            ordinate = 50;
-            axis = 50;
+            this.init(
+                DefaultDesignConstants.gridAxis(),
+                DefaultDesignConstants.gridOrdinate(),
+                DefaultDesignConstants.cellWidth(),
+                DefaultDesignConstants.cellHeight(),
+                DefaultDesignConstants.cellBorderThickness()
+            );
         }
 
-        public CGridView(int cellWidth, int cellHeight, int ordinate, int axis)
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        public CGridView(int axis, int ordinate, int cellWidth, int cellHeight, int cellBorderThickness)
+        {
+            this.init(axis, ordinate, cellWidth, cellHeight, cellBorderThickness);
+        }
+
+        protected void init(int axis, int ordinate, int cellWidth, int cellHeight, int cellBorderThickness)
         {
             InitializeComponent();
+            this.cellViews = new List<CellView>();
+            this.axis = axis;
+            this.ordinate = ordinate;
             this.cellWidth = cellWidth;
             this.cellHeight = cellHeight;
-            this.ordinate = ordinate;
-            this.axis = axis;
+            this.cellBorderThickness = cellBorderThickness;
         }
 
-        public void paint()
+        public void initCells()
         {
-            Width = gridModel.Columns * cellWidth;
-            for (int i = 0; i <= gridModel.Rows; i++)
+            foreach (var cellModel in this.gridModel.cells)
             {
-                Line line = new Line();
-                line.StrokeThickness = 4;
-                line.Stroke = Brushes.White;
-                line.X1 = 0;
-                line.X2 = gridModel.Columns * cellWidth;
-                int ordinateLine = GridFacade.Instance.convertIndexYtoPixel(this, i) - ordinate;
-                line.Y1 = ordinateLine;
-                line.Y2 = ordinateLine;
-                myCanvas.Children.Add(line);
-            }
-
-            Height = gridModel.Rows * cellHeight;
-            for (int i = 0; i <= gridModel.Columns; i++)
-            {
-                Line line = new Line();
-                line.StrokeThickness = 4;
-                line.Stroke = Brushes.White;
-                int axisLine = GridFacade.Instance.convertIndexXtoPixel(this, i) - axis;
-                line.X1 = axisLine;
-                line.X2 = axisLine;
-                line.Y1 = 0;
-                line.Y2 = gridModel.Rows * cellHeight;
-                myCanvas.Children.Add(line);
+                CellView cell = new CellView(cellModel);
+                this.cellViews.Add(cell);
+                myCanvas.Children.Add(cell);
+                Canvas.SetLeft(cell, GridFacade.Instance.convertIndexXtoPixel(this.cellWidth, 0, cell.getRow()));
+                Canvas.SetTop(cell, GridFacade.Instance.convertIndexYtoPixel(this.cellHeight, 0, cell.getColumn()));
             }
         }
 

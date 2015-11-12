@@ -63,9 +63,13 @@
     <Compile Include="Model\TokenModel.cs" />
     <Compile Include="ObservablePattern\IObservable.cs" />
     <Compile Include="ObservablePattern\IObserver.cs" />
+    <Compile Include="View\CellView.xaml.cs">
+      <DependentUpon>CellView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\CGridView.xaml.cs">
       <DependentUpon>CGridView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\DefaultDesignConstants.cs" />
     <Page Include="GameView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -79,6 +83,10 @@
       <DependentUpon>GameView.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\CellView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\CGridView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

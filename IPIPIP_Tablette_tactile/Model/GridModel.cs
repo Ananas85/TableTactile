@@ -18,7 +18,7 @@ namespace IPIPIP_Tablette_tactile.Model
         /// </summary>
         private int _rows;
 
-        public CellModel[,] Tokens { get; private set; }
+        public CellModel[,] cells { get; private set; }
 	    #endregion
 
         #region Constructors
@@ -41,7 +41,7 @@ namespace IPIPIP_Tablette_tactile.Model
         {
             this._columns = numberOfColumns;
             this._rows = numberOfRows;
-            this.Tokens = new CellModel[this._rows, this._columns];
+            this.cells = new CellModel[this._rows, this._columns];
             this.resetGrid();
         }
 
@@ -51,7 +51,7 @@ namespace IPIPIP_Tablette_tactile.Model
             {
                 for (var j = 0; j < this._columns; j++)
                 {
-                    this.Tokens[i,j] = new CellModel(i,j);
+                    this.cells[i,j] = new CellModel(i,j);
                 }
             }
         }

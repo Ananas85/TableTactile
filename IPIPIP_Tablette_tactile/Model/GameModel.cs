@@ -13,7 +13,7 @@ namespace IPIPIP_Tablette_tactile.Model
     {
         public GameModel()
         {
-            this.initialize(10, 10);
+            this.initialize(3, 3);
         }
 
         public GameModel(int rows, int columns)

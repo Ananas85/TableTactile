@@ -40,43 +40,27 @@ namespace IPIPIP_Tablette_tactile
             InitializeComponent();
             // Add handlers for window availability events
             AddWindowAvailabilityHandlers();
-            this.init(100, 100, 200, 200, 3, 3);
-        }
-
-        /// <summary>
-        /// This method prepare the ground :
-        /// It place the grid and the number of cell
-        /// </summary>
-        /// <param name="axis"></param>
-        /// <param name="ordinate"></param>
-        /// <param name="cellHeight"></param>
-        /// <param name="cellWidth"></param>
-        /// <param name="rows"></param>
-        /// <param name="columns"></param>
-        protected void init(int axis, int ordinate, int cellHeight, int cellWidth, int rows, int columns)
-        {
-	        myCanvas.Background = Brushes.Aquamarine;
-            this.GridView = new CGridView(cellHeight, cellWidth, ordinate, axis);
+            this.GridView = new CGridView();
 
 	        Label label = new Label
 	        {
 		        Content = "IPIPIP_Tablette Tactile : Mon super Morpion"
 	        };
 	        myCanvas.Children.Add(label);
-	        myCanvas.Children.Add(this.GridView);
 
-	        this.GameModel = new GameModel(rows, columns);
+	        this.GameModel = new GameModel();
             this.GameModel.addObserver(this);
 
             //It's a reference of the gridView Model
             this.GridView.GridModel = this.GameModel.GridModel;
-            this.GridView.paint();
+            this.GridView.initCells();
             
             //We place the grid
+            myCanvas.Children.Add(this.GridView);
             Canvas.SetLeft(this.GridView, GridView.axis);
             Canvas.SetTop(this.GridView, GridView.ordinate);
             Canvas.SetLeft(label, this.Width/4);
-        }
+        }        
 
         #region Windows noises
         /// <summary>
@@ -156,7 +140,7 @@ namespace IPIPIP_Tablette_tactile
         {
 	        if (e.TouchDevice.GetTagData() != TagData.None)
 	        {
-		        MessageBox.Show("Coucou");
+	            MessageBox.Show("Un tag est entre maggle");
 	        }
         }
     }
