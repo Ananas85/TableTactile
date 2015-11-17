@@ -17,6 +17,7 @@ using Microsoft.Surface.Presentation;
 using Microsoft.Surface.Presentation.Controls;
 using Microsoft.Surface.Presentation.Input;
 using IPIPIP_Tablette_tactile.Model;
+using IPIPIP_Tablette_tactile.ObservablePattern;
 using IPIPIP_Tablette_tactile.View;
 
 namespace IPIPIP_Tablette_tactile
@@ -24,7 +25,7 @@ namespace IPIPIP_Tablette_tactile
     /// <summary>
     /// Interaction logic for our GameView
     /// </summary>
-    public partial class GameView : ObservablePattern.IObserver
+    public partial class GameView : IObserver
     {
         #region Class attributes
         public CGridView GridView { get; set; }
@@ -46,19 +47,18 @@ namespace IPIPIP_Tablette_tactile
 	        {
 		        Content = "IPIPIP_Tablette Tactile : Mon super Morpion"
 	        };
-	        myCanvas.Children.Add(label);
+	        MyCanvas.Children.Add(label);
 
 	        this.GameModel = new GameModel();
-            this.GameModel.addObserver(this);
+            this.GameModel.AddObserver(this);
 
             //It's a reference of the gridView Model
             this.GridView.GridModel = this.GameModel.GridModel;
-            this.GridView.initCells();
             
             //We place the grid
-            myCanvas.Children.Add(this.GridView);
-            Canvas.SetLeft(this.GridView, GridView.axis);
-            Canvas.SetTop(this.GridView, GridView.ordinate);
+            MyCanvas.Children.Add(this.GridView);
+            Canvas.SetLeft(this.GridView, GridView.Axis);
+            Canvas.SetTop(this.GridView, GridView.Ordinate);
             Canvas.SetLeft(label, this.Width/4);
         }        
 
@@ -131,7 +131,7 @@ namespace IPIPIP_Tablette_tactile
         #endregion
 
         #region Observer Part
-        public void update(ObservablePattern.IObservable observable)
+        public void Update(ObservablePattern.Observable observable)
         {
         }
         #endregion
@@ -140,7 +140,7 @@ namespace IPIPIP_Tablette_tactile
         {
 	        if (e.TouchDevice.GetTagData() != TagData.None)
 	        {
-	            MessageBox.Show("Un tag est entre maggle");
+	            MessageBox.Show("Un tag est sur la surface");
 	        }
         }
     }

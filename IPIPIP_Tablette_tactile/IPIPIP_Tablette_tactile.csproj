@@ -56,7 +56,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Utils\GridFacade.cs" />
+    <Compile Include="Adapters\UnitsAdapter.cs" />
+    <Compile Include="Factory\TokenFactory.cs" />
+    <Compile Include="Adapters\GridAdapter.cs" />
     <Compile Include="Model\CellModel.cs" />
     <Compile Include="Model\GameModel.cs" />
     <Compile Include="Model\Abstract\AbstractGameModel.cs" />
@@ -69,7 +71,7 @@
     <Compile Include="View\CGridView.xaml.cs">
       <DependentUpon>CGridView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\DefaultDesignConstants.cs" />
+    <Compile Include="Utils\DefaultConstants.cs" />
     <Page Include="GameView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -110,7 +112,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="ClassDiagram1.cd" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

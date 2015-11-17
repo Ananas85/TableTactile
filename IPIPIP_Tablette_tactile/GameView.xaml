@@ -5,7 +5,7 @@
     Title="IPIPIP_Tablette_tactile"
     TouchDown="OnTouchDown"
     >
-   <Canvas Name="myCanvas">
+   <Canvas Name="MyCanvas">
        
     </Canvas>
 </s:SurfaceWindow>

@@ -1,0 +1,9 @@
+\\psf\Home\Documents\FIL\IPIPIP\TableTactile\IPIPIP_Tablette_Tactile_test\bin\Debug\IPIPIP_Tablette_Tactile_test.dll
+\\psf\Home\Documents\FIL\IPIPIP\TableTactile\IPIPIP_Tablette_Tactile_test\bin\Debug\IPIPIP_Tablette_Tactile_test.pdb
+\\psf\Home\Documents\FIL\IPIPIP\TableTactile\IPIPIP_Tablette_Tactile_test\obj\Debug\ResolveAssemblyReference.cache
+\\psf\Home\Documents\FIL\IPIPIP\TableTactile\IPIPIP_Tablette_Tactile_test\obj\Debug\IPIPIP_Tablette_Tactile_test.dll
+\\psf\Home\Documents\FIL\IPIPIP\TableTactile\IPIPIP_Tablette_Tactile_test\obj\Debug\IPIPIP_Tablette_Tactile_test.pdb
+\\psf\Home\Documents\FIL\IPIPIP\TableTactile\IPIPIP_Tablette_Tactile_test\bin\Debug\IPIPIP_Tablette_tactile.xml
+\\psf\Home\Documents\FIL\IPIPIP\TableTactile\IPIPIP_Tablette_Tactile_test\bin\Debug\Resources\icon.png
+\\psf\Home\Documents\FIL\IPIPIP\TableTactile\IPIPIP_Tablette_Tactile_test\bin\Debug\IPIPIP_Tablette_tactile.exe
+\\psf\Home\Documents\FIL\IPIPIP\TableTactile\IPIPIP_Tablette_Tactile_test\bin\Debug\IPIPIP_Tablette_tactile.pdb

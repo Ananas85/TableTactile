@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace IPIPIP_Tablette_tactile.ObservablePattern
+﻿namespace IPIPIP_Tablette_tactile.ObservablePattern
 {
+    /// <summary>
+    /// Simple observer pattern
+    /// </summary>
     public interface IObserver
     {
-        void update(IObservable observable);
+        void Update(Observable observable);
     }
 }

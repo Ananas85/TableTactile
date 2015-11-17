@@ -1,29 +1,45 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace IPIPIP_Tablette_tactile.ObservablePattern
 {
-    public abstract class IObservable
+    /// <summary>
+    /// Reimplementation of the observable
+    /// </summary>
+    public abstract class Observable
     {
-        protected List<IObserver> observers;
+        /// <summary>
+        /// Our list of observers
+        /// </summary>
+        protected List<IObserver> Observers;
 
-        public void addObserver(IObserver observer)
+        /// <summary>
+        /// Add an observer
+        /// </summary>
+        public void AddObserver(IObserver observer)
         {
-            this.observers.Add(observer);
-        }
-
-        public void removeObserver(IObserver observer)
-        {
-            this.observers.Remove(observer);
-        }
-
-        public void notify()
-        {
-            foreach (IObserver observer in this.observers)
+            if (this.Observers == null)
             {
-                observer.update(this);
+                this.Observers = new List<IObserver>();
+            }
+            this.Observers.Add(observer);
+        }
+
+        /// <summary>
+        /// Remove an observer
+        /// </summary>
+        public void RemoveObserver(IObserver observer)
+        {
+            this.Observers.Remove(observer);
+        }
+
+        /// <summary>
+        /// Notify all observers
+        /// </summary>
+        public void Notify()
+        {
+            foreach (IObserver observer in this.Observers)
+            {
+                observer.Update(this);
             }
         }
     }

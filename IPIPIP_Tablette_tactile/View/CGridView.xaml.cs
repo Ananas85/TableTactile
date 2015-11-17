@@ -2,50 +2,32 @@
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
+using IPIPIP_Tablette_tactile.Adapters;
 using IPIPIP_Tablette_tactile.Model;
+using IPIPIP_Tablette_tactile.Utils;
 
 namespace IPIPIP_Tablette_tactile.View
 {
     /// <summary>
-    /// Interaction logic for GridView.xaml
+    /// Interaction logic for CGridView.xaml
     /// </summary>
     public partial class CGridView
     {
         #region Properties
         /// <summary>
-        /// We put here the cell witdh to have only same size for each cell
-        /// </summary>
-        public int cellWidth { get; set; }
-
-        /// <summary>
-        /// We put here the cell height to have only same size for each cell
-        /// </summary>
-        public int cellHeight { get; set; }
-
-        /// <summary>
-        /// Where the grid is beginning on the axis
-        /// </summary>
-        public int axis { get; set; }
-
-        /// <summary>
-        /// Where the grid is beginning on the ordinate
-        /// </summary>
-        public int ordinate { get; set; }
-
-        /// <summary>
         /// The thickeness of a cell
         /// </summary>
-        public int cellBorderThickness { get; set; }
+        public int CellBorderThickness { get; set; }
 
         /// <summary>
         /// Our list of cells
         /// </summary>
-        protected List<CellView> cellViews;
+        protected List<CellView> CellViews;
 
         /// <summary>
         /// The model of the grid
         /// </summary>
-        private GridModel gridModel;
+        private GridModel _gridModel;
         #endregion
 
         /// <summary>
@@ -53,43 +35,52 @@ namespace IPIPIP_Tablette_tactile.View
         /// </summary>
         public CGridView()
         {
-            this.init(
-                DefaultDesignConstants.gridAxis(),
-                DefaultDesignConstants.gridOrdinate(),
-                DefaultDesignConstants.cellWidth(),
-                DefaultDesignConstants.cellHeight(),
-                DefaultDesignConstants.cellBorderThickness()
+            this.Init(
+                DefaultConstants.CellBorderThickness()
             );
         }
 
         /// <summary>
         /// Constructor
         /// </summary>
-        public CGridView(int axis, int ordinate, int cellWidth, int cellHeight, int cellBorderThickness)
+        public CGridView(int cellBorderThickness)
         {
-            this.init(axis, ordinate, cellWidth, cellHeight, cellBorderThickness);
+            this.Init(cellBorderThickness);
         }
 
-        protected void init(int axis, int ordinate, int cellWidth, int cellHeight, int cellBorderThickness)
+        /// <summary>
+        /// Our border thickness
+        /// </summary>
+        protected void Init(int cellBorderThickness)
         {
             InitializeComponent();
-            this.cellViews = new List<CellView>();
-            this.axis = axis;
-            this.ordinate = ordinate;
-            this.cellWidth = cellWidth;
-            this.cellHeight = cellHeight;
-            this.cellBorderThickness = cellBorderThickness;
+            this.CellViews = new List<CellView>();
+            this.CellBorderThickness = cellBorderThickness;
         }
 
-        public void initCells()
+        /// <summary>
+        /// Init all cells
+        /// </summary>
+        protected void InitCells()
         {
-            foreach (var cellModel in this.gridModel.cells)
+            foreach (var cellModel in this._gridModel.Cells)
             {
                 CellView cell = new CellView(cellModel);
-                this.cellViews.Add(cell);
-                myCanvas.Children.Add(cell);
-                Canvas.SetLeft(cell, GridFacade.Instance.convertIndexXtoPixel(this.cellWidth, 0, cell.getRow()));
-                Canvas.SetTop(cell, GridFacade.Instance.convertIndexYtoPixel(this.cellHeight, 0, cell.getColumn()));
+                this.CellViews.Add(cell);
+                cellModel.AddObserver(cell);
+                MyCanvas.Children.Add(cell);
+                Canvas.SetLeft(
+                    cell,
+                    UnitsAdapter.Instance.ModelToView(
+                        GridAdapter.Instance.ConvertIndexXtoPixel(this.GridModel.CellWidth, 0, cell.GetRow())
+                    )
+                );
+                Canvas.SetTop(
+                    cell,
+                    UnitsAdapter.Instance.ModelToView(
+                        GridAdapter.Instance.ConvertIndexYtoPixel(this.GridModel.CellHeight, 0, cell.GetColumn())
+                    )
+                );
             }
         }
 
@@ -98,12 +89,23 @@ namespace IPIPIP_Tablette_tactile.View
         {
             get
             {
-                return gridModel;
+                return _gridModel;
             }
             set
             {
-                gridModel = value;
+                _gridModel = value;
+                this.InitCells();
             }
+        }
+
+        public int Ordinate
+        {
+            get { return UnitsAdapter.Instance.ModelToView(this.GridModel.Ordinate); }
+        }
+
+        public int Axis
+        {
+            get { return UnitsAdapter.Instance.ModelToView(this.GridModel.Axis); }
         }
         #endregion
 

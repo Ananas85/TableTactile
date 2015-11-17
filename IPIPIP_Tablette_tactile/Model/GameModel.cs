@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using IPIPIP_Tablette_tactile.Adapters;
 using IPIPIP_Tablette_tactile.Model.Abstract;
 
 namespace IPIPIP_Tablette_tactile.Model
@@ -13,19 +12,14 @@ namespace IPIPIP_Tablette_tactile.Model
     {
         public GameModel()
         {
-            this.initialize(3, 3);
+            this.TokenModels = new HashSet<TokenModel>();
+            this.GridModel = new GridModel();
         }
 
-        public GameModel(int rows, int columns)
+        public GameModel(int rows, int columns, int cellWidth, int cellHeight, int gridAxis, int gridOrdinate)
         {
-            this.initialize(rows,columns);
-        }
-
-        protected void initialize(int rows, int columns)
-        {
-            this.observers = new List<ObservablePattern.IObserver>();
-            this.TokenModels = new List<TokenModel>();
-            this.GridModel = new GridModel(rows, columns);
+            this.TokenModels = new HashSet<TokenModel>();
+            this.GridModel = new GridModel(rows, columns, cellWidth, cellHeight, gridAxis, gridOrdinate);
         }
     }
 }

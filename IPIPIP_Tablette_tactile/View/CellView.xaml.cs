@@ -11,62 +11,96 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using IPIPIP_Tablette_tactile.Adapters;
 using IPIPIP_Tablette_tactile.Model;
+using IPIPIP_Tablette_tactile.ObservablePattern;
+using IPIPIP_Tablette_tactile.Utils;
 
 namespace IPIPIP_Tablette_tactile.View
 {
     /// <summary>
     /// Interaction logic for CellView.xaml
     /// </summary>
-    public partial class CellView : UserControl
+    public partial class CellView : IObserver
     {
-        public CellModel cellModel { get; set; }
-        public int thickness { 
-            get { return DefaultDesignConstants.cellBorderThickness(); }
+        /// <summary>
+        /// The linked cellModel
+        /// </summary>
+        protected CellModel CellModel;
+
+        /// <summary>
+        /// The thickness
+        /// </summary>
+        public int Thickness { 
+            get { return DefaultConstants.CellBorderThickness(); }
         }
 
         public CellView(CellModel cell)
         {
             InitializeComponent();
-            this.Width = DefaultDesignConstants.cellWidth() + 2 * thickness;
-            this.Height = DefaultDesignConstants.cellHeight() + 2 * thickness;
-            this.cellModel = cell;
-            this.paint();
+            this.Width = UnitsAdapter.Instance.ModelToView(cell.Width) + 2 * Thickness;
+            this.Height = UnitsAdapter.Instance.ModelToView(cell.Height) + 2 * Thickness;
+            this.CellModel = cell;
+            this.Paint();
         }
 
-        public void paint()
+        /// <summary>
+        /// Paint the cell
+        /// </summary>
+        protected void Paint()
         {
             //TopLine
-            this.drawALine(0, (int)this.Width, 0, 0);
+            this.DrawALine(0, (int)this.Width, 0, 0);
             //BottomLine
-            this.drawALine(0, (int)this.Width, (int)this.Height - this.thickness, (int)this.Height - this.thickness);
+            this.DrawALine(0, (int)this.Width, (int)this.Height - this.Thickness, (int)this.Height - this.Thickness);
             //LeftLine
-            this.drawALine(0, 0, 0, (int)this.Height);
+            this.DrawALine(0, 0, 0, (int)this.Height);
             //RightLine
-            this.drawALine((int)this.Width - this.thickness, (int)this.Width - this.thickness, 0, (int)this.Height);
+            this.DrawALine((int)this.Width - this.Thickness, (int)this.Width - this.Thickness, 0, (int)this.Height);
         }
 
-        protected void drawALine(int x1, int x2, int y1, int y2)
+        /// <summary>
+        /// Paint a line
+        /// </summary>
+        /// <param name="x1">Begin X</param>
+        /// <param name="x2">End X</param>
+        /// <param name="y1">Begin Y</param>
+        /// <param name="y2">End Y</param>
+        protected void DrawALine(int x1, int x2, int y1, int y2)
         {
             var color = Brushes.White;
             Line line = new Line();
             line.Stroke = color;
-            line.StrokeThickness = this.thickness;
+            line.StrokeThickness = this.Thickness;
             line.Y1 = y1;
             line.Y2 = y2;
             line.X1 = x1;
             line.X2 = x2;
-            this.myCanvas.Children.Add(line);
+            this.MyCanvas.Children.Add(line);
         }
 
-        public int getRow()
+        #region Getters
+        public int GetRow()
         {
-            return this.cellModel.rowIndex;
+            return this.CellModel.RowIndex;
         }
 
-        public int getColumn()
+        public int GetColumn()
         {
-            return this.cellModel.columnIndex;
+            return this.CellModel.ColumnIndex;
+        }
+        #endregion
+
+        /// <summary>
+        /// TODO implement reaction
+        /// </summary>
+        /// <param name="observable">The observable</param>
+        public void Update(Observable observable)
+        {
+            if (observable is CellModel)
+            {
+                //TODO
+            }
         }
     }
 }

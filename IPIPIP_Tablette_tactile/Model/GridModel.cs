@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using IPIPIP_Tablette_tactile.Utils;
 
 namespace IPIPIP_Tablette_tactile.Model
 {
@@ -18,42 +15,72 @@ namespace IPIPIP_Tablette_tactile.Model
         /// </summary>
         private int _rows;
 
-        public CellModel[,] cells { get; private set; }
+        private int _cellWidth;
+
+        private int _cellHeight;
+
+        private int _axis;
+
+        private int _ordinate;
+
+        public CellModel[,] Cells { get; private set; }
 	    #endregion
 
         #region Constructors
         public GridModel()
         {
-            this._columns = 10;
-            this._rows = 10;
-            this.initialize(_rows, _columns);
+            this.Initialize(
+                DefaultConstants.NumberOfRows(),
+                DefaultConstants.NumberOfColumns(),
+                DefaultConstants.CellWidth(),
+                DefaultConstants.CellHeight(),
+                DefaultConstants.GridAxis(),
+                DefaultConstants.GridOrdinate()
+            );
         }
 
-        public GridModel(int numberOfRows, int numberOfColumns)
+        public GridModel(int rows, int columns, int cellWidth, int cellHeight, int gridAxis, int gridOrdinate)
         {
-            this._rows = numberOfRows;
-            this._columns = numberOfColumns;
-            this.initialize(numberOfRows, numberOfColumns);
+            this.Initialize(rows, columns, cellWidth, cellHeight, gridAxis, gridOrdinate);
         }
         #endregion
 
-        protected void initialize(int numberOfRows, int numberOfColumns)
+        /// <summary>
+        /// Useful for constructor
+        /// </summary>
+        protected void Initialize(int rows, int columns, int cellWidth, int cellHeight, int gridAxis, int gridOrdinate)
         {
-            this._columns = numberOfColumns;
-            this._rows = numberOfRows;
-            this.cells = new CellModel[this._rows, this._columns];
-            this.resetGrid();
+            this._columns = columns;
+            this._rows = rows;
+            this._cellWidth = cellWidth;
+            this._cellHeight = cellHeight;
+            this._axis = gridAxis;
+            this._ordinate = gridOrdinate;
+            this.Cells = new CellModel[this._rows, this._columns];
+            this.ResetGrid();
         }
 
-        protected void resetGrid()
+        /// <summary>
+        /// Set all cells
+        /// </summary>
+        protected void ResetGrid()
         {
             for (var i = 0; i < this._rows; i++)
             {
                 for (var j = 0; j < this._columns; j++)
                 {
-                    this.cells[i,j] = new CellModel(i,j);
+                    this.Cells[i,j] = new CellModel(i,j, this._cellWidth, this._cellHeight);
                 }
             }
+        }
+
+        /// <summary>
+        /// Know if a point is in the grid
+        /// </summary>
+        public bool pointIsInGrid(int x, int y)
+        {
+            return (x > _axis && x <= (_axis + (this._columns*this._cellWidth)) && y > _ordinate &&
+                    y <= (_ordinate + (this._rows*this._cellHeight)));
         }
 
         #region Getters and setters
@@ -63,11 +90,6 @@ namespace IPIPIP_Tablette_tactile.Model
             {
                 return this._rows;
             }
-            set
-            {
-                this._rows = value;
-                this.resetGrid();
-            }
         }
 
         public int Columns
@@ -76,10 +98,40 @@ namespace IPIPIP_Tablette_tactile.Model
             {
                 return this._columns;
             }
-            set
+        }
+
+        public int CellWidth
+        {
+            get
             {
-                this._columns = value;
-                this.resetGrid();
+                return this._cellWidth;
+            }
+        }
+
+
+        public int CellHeight
+        {
+            get
+            {
+                return this._cellHeight;
+            }
+        }
+
+
+        public int Axis
+        {
+            get
+            {
+                return this._axis;
+            }
+        }
+
+
+        public int Ordinate
+        {
+            get
+            {
+                return this._ordinate;
             }
         }
 	    #endregion
